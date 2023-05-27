@@ -8,11 +8,9 @@ Features
 - Provides an optional counter for the amount of items that extend beyond the designated lines.
 - Automatically adjusts the visibility of your list items as you resize your browser window or container.
 
-Check out our [online documentation](https://j-jalving.github.io/wraptastic/) to see what Wraptastic.js can do for you!
-
 ## Documentation
 
-To check out docs, visit [vitepress.dev](https://j-jalving.github.io/wraptastic/).
+Check out our [online documentation](https://j-jalving.github.io/wraptastic/) to see what Wraptastic.js can do for you!
 
 ## License
 
