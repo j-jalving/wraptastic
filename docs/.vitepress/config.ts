@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/j-jalving/",
   title: "Wraptastic.js",
   description:
     "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage inline list wrapping and overflows",
@@ -11,7 +12,6 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Guide", link: "/setup" },
     ],
-
     sidebar: [
       {
         text: "Guide",
@@ -25,7 +25,6 @@ export default defineConfig({
         ],
       },
     ],
-
     socialLinks: [
       { icon: "github", link: "https://github.com/vuejs/vitepress" },
     ],
