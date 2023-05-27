@@ -1,0 +1,31 @@
+.wraptastic-container {
+  max-width: 100%;
+  margin: 16px 0;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  resize: horizontal;
+}
+
+.wraptastic {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.wraptastic-item,
+.wraptastic-counter {
+  margin: 0 !important;
+}
+
+.instructions-mobile {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .instructions-mobile {
+    display: block;
+  }
+  .instructions-desktop {
+    display: none;
+  }
+}
