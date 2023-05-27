@@ -2,7 +2,7 @@
 
 Wraptastic.js is a simple JavaScript package that effortlessly helps you manage inline list wrapping and overflows.
 
-Features
+**Features**
 
 - Limits inline list wrapping to 1, 2, 3 or any other amount of lines.
 - Provides an optional counter for the amount of items that extend beyond the designated lines.
