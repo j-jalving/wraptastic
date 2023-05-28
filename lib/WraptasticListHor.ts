@@ -2,20 +2,13 @@ import type { Config } from "./types";
 import WraptasticList from "./WraptasticList";
 
 export default class WraptasticListHor extends WraptasticList {
+  protected currentLine = 1;
   protected resizeObserver: ResizeObserver = new ResizeObserver(
     this.boundUpdate
   );
 
   constructor(listElem: HTMLElement, config: Config) {
     super(listElem, config);
-    // Set up event listeners for on load and when the window resizes
-    if (document.readyState == "complete") {
-      // Document was already loaded
-      this.update();
-    } else {
-      // Wait for document to finish loading
-      window.addEventListener("load", this.boundUpdate);
-    }
     // React to size changes of the list element
     this.resizeObserver.observe(this.listElem);
   }
@@ -26,65 +19,66 @@ export default class WraptasticListHor extends WraptasticList {
    * show the amount of items overflowing.
    */
   public update() {
+    // Reset current line
+    this.currentLine = 1;
     // Get all the items that are in the list right now
     const items: NodeListOf<HTMLElement> = this.getListItems();
-    // Get allowed offsets
-    const allowedOffsets = this.getAllowedOffsets(items);
     // Keep track if the number of overflowing items
     let overflowCount = 0;
     // Are there enough items to overflow the available lines?
-    if (items.length <= this.config.lines) {
-      // No, we can just show all items
-      Array.prototype.forEach.call(items, (item) => this.showItem(item));
-      // Hide the counter
-      this.hideCounter();
-    } else {
-      // Hide all items starting from the second
+    if (items.length > this.config.lines) {
+      //Yes, first hide all items starting from the second one
       for (let index = 1; index < items.length; index++) {
         this.hideItem(items[index]);
       }
-      // Process all items starting from the second
+      // Then process all items starting from the second one
       for (let index = 1; index < items.length; index++) {
-        // Get the current item
         const item = items[index];
-        // Set the overflow count, assuming the overflow starts at this item
-        overflowCount = items.length - index;
-        // Check if this is the last item in the list
+        const prevItem = items[index - 1];
         const isLastItem = index === items.length - 1;
+        // Set the number of overflowing items, it starts at this item
+        overflowCount = items.length - index;
         // Update the counter label to reflect the current overflowing count
         this.updateCounterLabel(overflowCount);
-        // Place the counter before this item
-        this.moveCounterBefore(item);
-        // Check if this item is overflowing
-        const isOverflowing: boolean = this.isOverflowing(
+        // Check if this item is on a visible line
+        const isOnVisibleLine: boolean = this.isOnVisibleLine(
           item,
-          isLastItem,
-          allowedOffsets
+          prevItem,
+          isLastItem
         );
-        // Is this item overflowing?
-        if (isOverflowing) {
-          // Check if the counter also overflows;
+
+        if (isOnVisibleLine) {
+          // Yes, it's on a visible line
+          if (isLastItem) {
+            // This was the last item we can hide the counter
+            this.hideCounter();
+            // Update the counter label, for posterity's sake
+            this.updateCounterLabel(0);
+            // And move the counter label to the end of the list
+            if (this.counterElem) {
+              this.listElem.appendChild(this.counterElem);
+            }
+          }
+        } else {
+          // No, hide the element
+          this.hideItem(item);
+          // No, check if the counter also is on an invisble line;
           if (
             this.counterElem &&
-            !allowedOffsets.includes(this.counterElem.offsetTop)
+            this.isOverflowing(this.counterElem, prevItem)
           ) {
-            // Counter overflows as well, hide it
+            // Counter is on invisible line as well, hide it
             this.hideCounter();
           }
           // We can exit the loop now
           break;
-        } else if (isLastItem) {
-          // This was the last item and there were no overflows detected, set
-          // the overflow count to 0
-          overflowCount = 0;
-          // Update the counter label, for posterity's sake
-          this.updateCounterLabel(overflowCount);
-          // And move the counter label to the end of the list
-          if (this.counterElem) {
-            this.listElem.appendChild(this.counterElem);
-          }
         }
       }
+    } else {
+      // No, overflow is impossible so we can simply show everything
+      Array.prototype.forEach.call(items, (item) => this.showItem(item));
+      // And hide the counter
+      this.hideCounter();
     }
     // Wrap up update cycle
     this.afterUpdate(overflowCount);
@@ -101,66 +95,66 @@ export default class WraptasticListHor extends WraptasticList {
   }
 
   /**
-   * This method determines if the current item is overflowing beyond the amount
-   * of allowed lines. It does so by quickly displaynig it and then checking if
-   * it's offset is in the allowed offsets list.
+   * This method determines if the given item is overflowing beyond the amount
+   * of allowed lines.
    */
-  protected isOverflowing(
+  protected isOnVisibleLine(
     item: HTMLElement,
-    isLastItem: boolean,
-    allowedOffsets: number[]
+    prevItem: HTMLElement,
+    isLastItem: boolean
   ): boolean {
     // Make sure the item is visible
     this.showItem(item);
-    // Check if the item is on a line that should be overflowing
-    if (!allowedOffsets.includes(item.offsetTop)) {
-      // Overflowing, check if it's the last item
-      if (isLastItem) {
-        // Last item, maybe it will fit without the counter
-        this.hideCounter();
-        // Check if the item is still overflowing without the counter before it
-        if (allowedOffsets.includes(item.offsetTop)) {
-          // Not overflowing anymore, return overflowing false
-          return false;
-        }
-        // Still overflowing, show the counter again
-        this.showCounter();
+    // Are we currently on the last visible line?
+    if (this.isVisibleLine(this.currentLine + 1)) {
+      // Next line still visible, hide the counter
+      this.hideCounter();
+      // Check if the current item is still overflowing
+      if (!isLastItem && this.isOverflowing(item, prevItem)) {
+        // Yes, increase the current line number
+        this.currentLine += 1;
       }
-      // Hide the item again
-      this.hideItem(item);
-      // Return overflowing true
       return true;
     }
-    // Not overflowing, check if it's the last item and the counter is enabled
-    if (isLastItem && this.counterElem) {
-      // Last item, so all items fit. We can now hide the counter
+    // Place the counter before this item
+    this.moveCounterBefore(item);
+    // We're on the last visible line, we need to check for overflows
+    this.showCounter();
+
+    // Is the item overflowing?
+    if (this.isOverflowing(item, prevItem)) {
+      // Yes it's overflowing, what happens when we hide the counter
       this.hideCounter();
-      // Lets move it to the back of the list as well
-      this.listElem.appendChild(this.counterElem);
+      // Does it still overflow when the counter is hidden?
+      if (this.isOverflowing(item, prevItem)) {
+        // Yes, increase the current line number
+        this.currentLine += 1;
+      } else if (isLastItem) {
+        // It's is not overflowing anymore, and it's the last item.
+        return true;
+      }
+      this.showCounter();
+    } else {
+      // Is it overflowing with the counter visible;
+      // Not overflowing
+      return true;
     }
-    // Return overflowing false
+    // It's on an invisible line, counter needs to be visible
     return false;
   }
 
   /**
-   * Returns an array containing the offsetTop for each allowed line
+   * Checks if the given item is overflowing.
    */
-  protected getAllowedOffsets(items: NodeListOf<HTMLElement>): number[] {
-    // Hide the counter element
-    this.hideCounter();
-    const offsets: number[] = [];
-    Array.prototype.forEach.call(items, (item) => {
-      // Show the item
-      this.showItem(item);
-      // Add its offset to the list
-      offsets.push(item.offsetTop);
-    });
-    // Keep only unique values
-    const uniqueOffsets = [...new Set(offsets)];
-    // Show the counter again
-    this.showCounter();
-    // Return only the offsets for the amount of lines we want to display
-    return uniqueOffsets.slice(0, this.config.lines);
+  protected isOverflowing(item: HTMLElement, prevItem: HTMLElement): boolean {
+    return item.offsetLeft <= prevItem.offsetLeft + prevItem.offsetWidth;
+  }
+
+  /**
+   * Checks if the given line is a visible or invisible line.
+   */
+  protected isVisibleLine(line: number): boolean {
+    return line <= this.config.lines;
   }
 
   /**
