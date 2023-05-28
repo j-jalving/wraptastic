@@ -4,70 +4,45 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 ## Default setup
 
+<script setup lang="ts">
+  import Wraptastic from "../lib/Wraptastic.ts";
+  import { onMounted } from 'vue';
+  onMounted(() => {
+    new Wraptastic();
+  })
+</script>
+
 ### Code
 
 ```html
-<ul class="wraptastic">
-  <li class="wraptastic-item">Apple</li>
-  <li class="wraptastic-item">Banana</li>
-  <li class="wraptastic-item">Orange</li>
-  <li class="wraptastic-item">Mango</li>
-  <li class="wraptastic-item">Pineapple</li>
-  <li class="wraptastic-item">Watermelon</li>
-  <li class="wraptastic-item">Strawberry</li>
-  <li class="wraptastic-item">Kiwi</li>
-  <li class="wraptastic-item">Grapefruit</li>
-  <li class="wraptastic-item">Blueberry</li>
-</ul>
+<ul class="wraptastic"></ul>
 
 <script>
-  const wraptastic = new Wraptastic();
+  const wraptastic = new Wraptastic({
+    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]
+  });
 </script>
 ```
 
 ### Result
 
-<wraptastic-container :config="{ container: '#example-default' }">
-  <ul id="example-default" class="wraptastic">
-    <li class="wraptastic-item">Apple</li>
-    <li class="wraptastic-item">Banana</li>
-    <li class="wraptastic-item">Orange</li>
-    <li class="wraptastic-item">Mango</li>
-    <li class="wraptastic-item">Pineapple</li>
-    <li class="wraptastic-item">Watermelon</li>
-    <li class="wraptastic-item">Strawberry</li>
-    <li class="wraptastic-item">Kiwi</li>
-    <li class="wraptastic-item">Grapefruit</li>
-    <li class="wraptastic-item">Blueberry</li>
-  </ul>
+<wraptastic-container>
+  <ul 
+    class="wraptastic"
+    data-wraptastic-data='["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
+  ></ul>
 </wraptastic-container>
-
-:::tip
-
-<div class="instructions-mobile">Rotate your device to see Wraptastic.js in action</div>
-<div class="instructions-desktop">Drag the bottom right handle of the box to see Wraptastic.js in action</div>
-:::
 
 ## Two lines
 
 ### Code
 
 ```html
-<ul class="wraptastic">
-  <li class="wraptastic-item">Apple</li>
-  <li class="wraptastic-item">Banana</li>
-  <li class="wraptastic-item">Orange</li>
-  <li class="wraptastic-item">Mango</li>
-  <li class="wraptastic-item">Pineapple</li>
-  <li class="wraptastic-item">Watermelon</li>
-  <li class="wraptastic-item">Strawberry</li>
-  <li class="wraptastic-item">Kiwi</li>
-  <li class="wraptastic-item">Grapefruit</li>
-  <li class="wraptastic-item">Blueberry</li>
-</ul>
+<ul class="wraptastic"></ul>
 
 <script>
   const wraptastic = new Wraptastic(
+    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"],
     lines: 2,
   );
 </script>
@@ -75,47 +50,24 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 ### Result
 
-<wraptastic-container :config="{ container: '#example-two-lines', lines: 2 }">
-  <ul id="example-two-lines" class="wraptastic">
-    <li class="wraptastic-item">Apple</li>
-    <li class="wraptastic-item">Banana</li>
-    <li class="wraptastic-item">Orange</li>
-    <li class="wraptastic-item">Mango</li>
-    <li class="wraptastic-item">Pineapple</li>
-    <li class="wraptastic-item">Watermelon</li>
-    <li class="wraptastic-item">Strawberry</li>
-    <li class="wraptastic-item">Kiwi</li>
-    <li class="wraptastic-item">Grapefruit</li>
-    <li class="wraptastic-item">Blueberry</li>
-  </ul>
+<wraptastic-container>
+  <ul 
+    class="wraptastic"
+    data-wraptastic-data='["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
+    data-wraptastic-lines="2"
+  ></ul>
 </wraptastic-container>
-
-:::tip
-
-<div class="instructions-mobile">Rotate your device to see Wraptastic.js in action</div>
-<div class="instructions-desktop">Drag the bottom right handle of the box to see Wraptastic.js in action</div>
-:::
 
 ## Three lines
 
 ### Code
 
 ```html
-<ul class="wraptastic">
-  <li class="wraptastic-item">Apple</li>
-  <li class="wraptastic-item">Banana</li>
-  <li class="wraptastic-item">Orange</li>
-  <li class="wraptastic-item">Mango</li>
-  <li class="wraptastic-item">Pineapple</li>
-  <li class="wraptastic-item">Watermelon</li>
-  <li class="wraptastic-item">Strawberry</li>
-  <li class="wraptastic-item">Kiwi</li>
-  <li class="wraptastic-item">Grapefruit</li>
-  <li class="wraptastic-item">Blueberry</li>
-</ul>
+<ul class="wraptastic"></ul>
 
 <script>
   const wraptastic = new Wraptastic(
+    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"],
     lines: 3,
   );
 </script>
@@ -123,47 +75,24 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 ### Result
 
-<wraptastic-container :config="{ container: '#example-three-lines', lines: 3 }">
-  <ul id="example-three-lines" class="wraptastic">
-    <li class="wraptastic-item">Apple</li>
-    <li class="wraptastic-item">Banana</li>
-    <li class="wraptastic-item">Orange</li>
-    <li class="wraptastic-item">Mango</li>
-    <li class="wraptastic-item">Pineapple</li>
-    <li class="wraptastic-item">Watermelon</li>
-    <li class="wraptastic-item">Strawberry</li>
-    <li class="wraptastic-item">Kiwi</li>
-    <li class="wraptastic-item">Grapefruit</li>
-    <li class="wraptastic-item">Blueberry</li>
-  </ul>
+<wraptastic-container>
+  <ul 
+    class="wraptastic"
+    data-wraptastic-data='["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
+    data-wraptastic-lines="3"
+  ></ul>
 </wraptastic-container>
-
-:::tip
-
-<div class="instructions-mobile">Rotate your device to see Wraptastic.js in action</div>
-<div class="instructions-desktop">Drag the bottom right handle of the box to see Wraptastic.js in action</div>
-:::
 
 ## Counter template
 
 ### Code
 
 ```html
-<ul class="wraptastic">
-  <li class="wraptastic-item">Apple</li>
-  <li class="wraptastic-item">Banana</li>
-  <li class="wraptastic-item">Orange</li>
-  <li class="wraptastic-item">Mango</li>
-  <li class="wraptastic-item">Pineapple</li>
-  <li class="wraptastic-item">Watermelon</li>
-  <li class="wraptastic-item">Strawberry</li>
-  <li class="wraptastic-item">Kiwi</li>
-  <li class="wraptastic-item">Grapefruit</li>
-  <li class="wraptastic-item">Blueberry</li>
-</ul>
+<ul class="wraptastic"></ul>
 
 <script>
   const wraptastic = new Wraptastic(
+    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"],
     counterTemplate: (count) => { return `${count} more items` },
   );
 </script>
@@ -171,47 +100,24 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 ### Result
 
-<wraptastic-container :config="{ container: '#example-no-counter', counterTemplate: function(count) { return `${count} more items` } }">
-  <ul id="example-no-counter" class="wraptastic">
-    <li class="wraptastic-item">Apple</li>
-    <li class="wraptastic-item">Banana</li>
-    <li class="wraptastic-item">Orange</li>
-    <li class="wraptastic-item">Mango</li>
-    <li class="wraptastic-item">Pineapple</li>
-    <li class="wraptastic-item">Watermelon</li>
-    <li class="wraptastic-item">Strawberry</li>
-    <li class="wraptastic-item">Kiwi</li>
-    <li class="wraptastic-item">Grapefruit</li>
-    <li class="wraptastic-item">Blueberry</li>
-  </ul>
+<wraptastic-container>
+  <ul 
+    class="wraptastic"
+    data-wraptastic-data='["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
+    data-wraptastic-counter-template="{count} more items"
+  ></ul>
 </wraptastic-container>
-
-:::tip
-
-<div class="instructions-mobile">Rotate your device to see Wraptastic.js in action</div>
-<div class="instructions-desktop">Drag the bottom right handle of the box to see Wraptastic.js in action</div>
-:::
 
 ## No counter
 
 ### Code
 
 ```html
-<ul class="wraptastic">
-  <li class="wraptastic-item">Apple</li>
-  <li class="wraptastic-item">Banana</li>
-  <li class="wraptastic-item">Orange</li>
-  <li class="wraptastic-item">Mango</li>
-  <li class="wraptastic-item">Pineapple</li>
-  <li class="wraptastic-item">Watermelon</li>
-  <li class="wraptastic-item">Strawberry</li>
-  <li class="wraptastic-item">Kiwi</li>
-  <li class="wraptastic-item">Grapefruit</li>
-  <li class="wraptastic-item">Blueberry</li>
-</ul>
+<ul class="wraptastic"></ul>
 
 <script>
   const wraptastic = new Wraptastic(
+    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"],
     counterEnabled: false,
   );
 </script>
@@ -219,66 +125,41 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 ### Result
 
-<wraptastic-container :config="{ container: '#example-no-counter', counterEnabled: false }">
-  <ul id="example-no-counter" class="wraptastic">
-    <li class="wraptastic-item">Apple</li>
-    <li class="wraptastic-item">Banana</li>
-    <li class="wraptastic-item">Orange</li>
-    <li class="wraptastic-item">Mango</li>
-    <li class="wraptastic-item">Pineapple</li>
-    <li class="wraptastic-item">Watermelon</li>
-    <li class="wraptastic-item">Strawberry</li>
-    <li class="wraptastic-item">Kiwi</li>
-    <li class="wraptastic-item">Grapefruit</li>
-    <li class="wraptastic-item">Blueberry</li>
-  </ul>
+<wraptastic-container>
+  <ul 
+    class="wraptastic"
+    data-wraptastic-data='["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
+    data-wraptastic-counter-enabled="false"
+  ></ul>
 </wraptastic-container>
-
-:::tip
-
-<div class="instructions-mobile">Rotate your device to see Wraptastic.js in action</div>
-<div class="instructions-desktop">Drag the bottom right handle of the box to see Wraptastic.js in action</div>
-:::
 
 ## Vertical list
 
 ### Code
 
 ```html
-<ul class="wraptastic" style="display: flex; flex-direction: column;">
-  <li class="wraptastic-item">Apple</li>
-  <li class="wraptastic-item">Banana</li>
-  <li class="wraptastic-item">Orange</li>
-  <li class="wraptastic-item">Mango</li>
-  <li class="wraptastic-item">Pineapple</li>
-  <li class="wraptastic-item">Watermelon</li>
-  <li class="wraptastic-item">Strawberry</li>
-  <li class="wraptastic-item">Kiwi</li>
-  <li class="wraptastic-item">Grapefruit</li>
-  <li class="wraptastic-item">Blueberry</li>
-</ul>
+<ul 
+  class="wraptastic" 
+  style="display: flex; flex-direction: column;"
+></ul>
 
 <script>
   const wraptastic = new Wraptastic({
-    inline: true,
+    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"],
     lines: 5,
+    inline: false,
   });
 </script>
 ```
 
 ### Result
 
-<wraptastic-container :config="{ container: '#example-vertical-list', lines: 5, inline: false }">
-  <ul id="example-vertical-list" class="wraptastic" style="display: flex; flex-direction: column;">
-    <li class="wraptastic-item">Apple</li>
-    <li class="wraptastic-item">Banana</li>
-    <li class="wraptastic-item">Orange</li>
-    <li class="wraptastic-item">Mango</li>
-    <li class="wraptastic-item">Pineapple</li>
-    <li class="wraptastic-item">Watermelon</li>
-    <li class="wraptastic-item">Strawberry</li>
-    <li class="wraptastic-item">Kiwi</li>
-    <li class="wraptastic-item">Grapefruit</li>
-    <li class="wraptastic-item">Blueberry</li>
-  </ul>
+<wraptastic-container :animate="false" :animate-button="false">
+  <ul 
+    class="wraptastic"
+    data-wraptastic-data='["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
+    data-wraptastic-lines="3"
+    data-wraptastic-inline="false"
+    style="display: flex; flex-direction: column;"
+  ></ul>
 </wraptastic-container>

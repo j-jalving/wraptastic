@@ -25,6 +25,9 @@ export default defineConfig({
         ],
       },
     ],
+    footer: {
+      message: "Released under the MIT License.",
+    },
     socialLinks: [
       { icon: "github", link: "https://github.com/j-jalving/wraptastic" },
     ],
