@@ -25,7 +25,7 @@ export default class WraptasticListHor extends WraptasticList {
    * maximum number of allowed lines. If necesary it also updates the counter to
    * show the amount of items overflowing.
    */
-  update() {
+  public update() {
     // Get all the items that are in the list right now
     const items: NodeListOf<HTMLElement> = this.getListItems();
     // Get allowed offsets
@@ -91,11 +91,21 @@ export default class WraptasticListHor extends WraptasticList {
   }
 
   /**
+   * Destroy this instance
+   */
+  public destroy() {
+    super.destroy();
+    // Remove event listeners
+    window.removeEventListener("load", this.boundUpdate);
+    this.resizeObserver.unobserve(this.listElem);
+  }
+
+  /**
    * This method determines if the current item is overflowing beyond the amount
    * of allowed lines. It does so by quickly displaynig it and then checking if
    * it's offset is in the allowed offsets list.
    */
-  isOverflowing(
+  protected isOverflowing(
     item: HTMLElement,
     isLastItem: boolean,
     allowedOffsets: number[]
@@ -135,7 +145,7 @@ export default class WraptasticListHor extends WraptasticList {
   /**
    * Returns an array containing the offsetTop for each allowed line
    */
-  getAllowedOffsets(items: NodeListOf<HTMLElement>): number[] {
+  protected getAllowedOffsets(items: NodeListOf<HTMLElement>): number[] {
     // Hide the counter element
     this.hideCounter();
     const offsets: number[] = [];
@@ -156,19 +166,9 @@ export default class WraptasticListHor extends WraptasticList {
   /**
    * Places the counter element before the given item
    */
-  moveCounterBefore(item: HTMLElement) {
+  protected moveCounterBefore(item: HTMLElement) {
     if (item && this.counterElem) {
       this.listElem.insertBefore(this.counterElem, item);
     }
-  }
-
-  /**
-   * Destroy this instance
-   */
-  destroy() {
-    super.destroy();
-    // Remove event listeners
-    window.removeEventListener("load", this.boundUpdate);
-    this.resizeObserver.unobserve(this.listElem);
   }
 }
