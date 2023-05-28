@@ -32,11 +32,11 @@ export default {
 <style lang="scss" scoped>
 .wraptastic-container {
   min-width: 20%;
-  max-width: 100%;
-  min-height: 150px;
+  min-height: 152px;
   margin: 16px 0;
   padding: 20px;
   overflow: hidden;
+  background-color: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   resize: horizontal;
