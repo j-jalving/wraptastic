@@ -12,6 +12,8 @@ This page gives a preview of some ways you can use Wraptastic.js.
   })
 </script>
 
+<div id="here"></div>
+
 ### Code
 
 ```html
@@ -19,7 +21,18 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 <script>
   const wraptastic = new Wraptastic({
-    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]
+    data: [
+      "Apple",
+      "Banana",
+      "Orange",
+      "Mange",
+      "Pineapple",
+      "Watermelon",
+      "Strawberry",
+      "Kiwi",
+      "Grapefruit",
+      "Blueberry",
+    ],
   });
 </script>
 ```
@@ -138,14 +151,22 @@ This page gives a preview of some ways you can use Wraptastic.js.
 ### Code
 
 ```html
-<ul 
-  class="wraptastic" 
-  style="display: flex; flex-direction: column;"
-></ul>
+<ul class="wraptastic" style="display: flex; flex-direction: column;"></ul>
 
 <script>
   const wraptastic = new Wraptastic({
-    data: ["Apple", "Banana", "Orange", "Mange", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"],
+    data: [
+      "Apple",
+      "Banana",
+      "Orange",
+      "Mange",
+      "Pineapple",
+      "Watermelon",
+      "Strawberry",
+      "Kiwi",
+      "Grapefruit",
+      "Blueberry",
+    ],
     lines: 5,
     inline: false,
   });

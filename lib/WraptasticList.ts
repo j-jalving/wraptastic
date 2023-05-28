@@ -24,6 +24,8 @@ export default class WraptasticList extends EventTarget {
       // Yes, let's create it
       this.createCounter();
     }
+    // Add data-wraptastic-init attribute so we know it has been initialized
+    this.listElem.setAttribute("data-wraptastic-init", "");
     // Emit create event, wait a tick to be sure event listeners are registered
     window.setTimeout(this.triggerCreateEvent.bind(this));
     // Create a bound version of the update method to easily add and remove
@@ -34,13 +36,26 @@ export default class WraptasticList extends EventTarget {
   /**
    * This is where the magic happens
    */
-  update(): void {}
+  public update(): void {}
+
+  /**
+   * Destroy this instances
+   */
+  public destroy() {
+    // Remove all previously created elements from the DOM
+    Array.prototype.forEach.call(this.createdElems, (element) => {
+      element.remove();
+    });
+    // Remove data-wraptastic-init attribute so we know it has not been
+    // initialized
+    this.listElem.removeAttribute("data-wraptastic-init");
+  }
 
   /**
    * Handles everything that should happen after a list has finished its update
    * cycle
    */
-  afterUpdate(overflowCount: number): void {
+  protected afterUpdate(overflowCount: number): void {
     // Wait a tick to be sure event listeners are registered
     window.setTimeout(() => {
       // Trigger update event
@@ -58,7 +73,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Create new item elements inside the list
    */
-  createItems(items: string[]) {
+  protected createItems(items: string[]) {
     // Get element type
     const itemType: string = this.getItemType();
     // Loop through all given items
@@ -77,7 +92,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Create a new counter element at the end of the list
    */
-  createCounter() {
+  protected createCounter() {
     // Get element type
     const itemType: string = this.getItemType();
     // Create a new counter element
@@ -94,7 +109,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Returns the type of element that should be used for the list items
    */
-  getItemType(): string {
+  protected getItemType(): string {
     // Get the element type for the list
     const containerType: string = this.listElem.tagName;
     // Return the element type for the item
@@ -107,7 +122,7 @@ export default class WraptasticList extends EventTarget {
     }
   }
 
-  getListItems(): NodeListOf<HTMLElement> {
+  protected getListItems(): NodeListOf<HTMLElement> {
     return this.listElem.querySelectorAll(
       `${this.config.item}:not(${this.config.counter})`
     );
@@ -116,7 +131,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Updates the label of the counter element using the counter template
    */
-  updateCounterLabel(count: number) {
+  protected updateCounterLabel(count: number) {
     // Check if the counter needs to be updated
     if (this.counterElem && this.config.counterEnabled) {
       // Yes, check if the counterTemplate is function
@@ -136,7 +151,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Hides the given item
    */
-  hideItem(item: HTMLElement) {
+  protected hideItem(item: HTMLElement) {
     if (item) {
       item.style.display = "none";
     }
@@ -145,7 +160,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Shows the given item
    */
-  showItem(item: HTMLElement) {
+  protected showItem(item: HTMLElement) {
     if (item) {
       item.style.display = "";
     }
@@ -154,7 +169,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Hides the counter
    */
-  hideCounter() {
+  protected hideCounter() {
     if (this.counterElem) {
       this.counterElem.style.display = "none";
     }
@@ -163,7 +178,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Shows the counter
    */
-  showCounter() {
+  protected showCounter() {
     if (this.counterElem) {
       this.counterElem.style.display = "";
     }
@@ -172,7 +187,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Trigger create event
    */
-  triggerCreateEvent() {
+  protected triggerCreateEvent() {
     const event = new CustomEvent("create", {
       detail: { element: this.listElem },
     });
@@ -182,7 +197,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Trigger update event
    */
-  triggerUpdateEvent() {
+  protected triggerUpdateEvent() {
     const event = new CustomEvent("update", {
       detail: { element: this.listElem },
     });
@@ -192,7 +207,7 @@ export default class WraptasticList extends EventTarget {
   /**
    * Trigger change event
    */
-  triggerChangeEvent(count: number, oldCount: number | undefined) {
+  protected triggerChangeEvent(count: number, oldCount: number | undefined) {
     const event = new CustomEvent("change", {
       detail: {
         element: this.listElem,
@@ -201,15 +216,5 @@ export default class WraptasticList extends EventTarget {
       },
     });
     this.dispatchEvent(event);
-  }
-
-  /**
-   * Destroy this instances
-   */
-  destroy() {
-    // Remove all previously created elements from the DOM
-    Array.prototype.forEach.call(this.createdElems, (element) => {
-      element.remove();
-    });
   }
 }

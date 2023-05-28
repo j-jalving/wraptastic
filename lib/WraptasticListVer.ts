@@ -16,11 +16,20 @@ export default class WraptasticListVer extends WraptasticList {
   }
 
   /**
+   * Destroy this instance
+   */
+  public destroy() {
+    super.destroy();
+    // Remove event listeners
+    window.removeEventListener("load", this.boundUpdate);
+  }
+
+  /**
    * This method updates the list to hide all items overflowing beyond the
    * maximum number of allowed lines. If necesary it also updates the counter to
    * show the amount of items overflowing.
    */
-  update() {
+  public update() {
     // Get all the items in the list
     const items: NodeListOf<HTMLElement> = this.getListItems();
     // Save the numer of overflowing items
@@ -47,14 +56,5 @@ export default class WraptasticListVer extends WraptasticList {
     }
     // Wrap up update cycle
     this.afterUpdate(overflowCount);
-  }
-
-  /**
-   * Destroy this instance
-   */
-  destroy() {
-    super.destroy();
-    // Remove event listeners
-    window.removeEventListener("load", this.boundUpdate);
   }
 }
