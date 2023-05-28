@@ -1,8 +1,8 @@
 import DefaultTheme from "vitepress/theme";
 import WraptasticContainer from "./components/WraptasticContainer.vue";
 
-import "./custom.css";
 import "../../../lib/style.scss";
+import "./custom.css";
 
 export default {
   ...DefaultTheme,
