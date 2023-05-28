@@ -119,7 +119,7 @@ export default class WraptasticList extends EventTarget {
   updateCounterLabel(count: number) {
     // Check if the counter needs to be updated
     if (this.counterElem && this.config.counterEnabled) {
-      // Yes, heck if the counterTemplate is fucntion
+      // Yes, check if the counterTemplate is function
       if (typeof this.config.counterTemplate === "function") {
         // Yes, get new value from the counterTemplate method
         this.counterElem.textContent = this.config.counterTemplate(count);
