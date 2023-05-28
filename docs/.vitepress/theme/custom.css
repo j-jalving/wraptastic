@@ -7,16 +7,3 @@
 .wraptastic-counter {
   margin: 0 !important;
 }
-
-.instructions-mobile {
-  display: none;
-}
-
-@media (pointer: coarse) {
-  .instructions-mobile {
-    display: block;
-  }
-  .instructions-desktop {
-    display: none;
-  }
-}
