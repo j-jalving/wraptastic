@@ -82,7 +82,7 @@ Then instantiate Wraptastic.js and pass along the list items through the config:
 
 ```js
 const wraptastic = new Wraptastic({
-  data: ["Apple", "Banana", "Orange", "Mange", "Pineapple"],
+  data: ["Apple", "Banana", "Orange", "Mango", "Pineapple"],
 });
 ```
 
