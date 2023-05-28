@@ -1,3 +1,8 @@
+:root {
+  --wraptastic-background-color: #0d6efd;
+  --wraptastic-text-color: #fff;
+}
+
 .wraptastic {
   $block: &;
 
@@ -16,20 +21,20 @@
     height: 30px;
     padding: 0 10px;
     overflow: hidden;
-    color: #fff;
+    color: var(--wraptastic-text-color);
     font-weight: bold;
     font-size: 0.8rem;
     white-space: nowrap;
     text-decoration: none;
     text-overflow: ellipsis;
     list-style-type: none;
-    background: #0d6efd;
-    border: solid 2px #0d6efd;
+    background: var(--wraptastic-background-color);
+    border: solid 2px var(--wraptastic-background-color);
     border-radius: 5px;
   }
 
   &-counter {
-    color: #0d6efd;
-    background: #fff;
+    color: var(--wraptastic-background-color);
+    background: var(--wraptastic-text-color);
   }
 }

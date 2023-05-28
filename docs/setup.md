@@ -55,6 +55,17 @@ Or import it in your script when you've installed the package through `npm` or
 import "wraptastic/style.css";
 ```
 
+### Colors
+
+You also have the option to customize the colors using CSS variables:
+
+```css
+:root {
+  --wraptastic-background-color: #f3e7ff;
+  --wraptastic-text-color: #a152ef;
+}
+```
+
 ## Usage
 
 Setup is very easy, and cane be done in one of several ways:
