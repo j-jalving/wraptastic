@@ -5,14 +5,6 @@ import WraptasticList from "./WraptasticList";
 export default class WraptasticListVer extends WraptasticList {
   constructor(listElem: HTMLElement, config: Config) {
     super(listElem, config);
-    // Update methods only needs to be called once for vertical lists
-    if (document.readyState == "complete") {
-      // Document was already loaded
-      this.update();
-    } else {
-      // Wait for document to finish loading
-      window.addEventListener("load", this.boundUpdate);
-    }
   }
 
   /**
@@ -20,8 +12,6 @@ export default class WraptasticListVer extends WraptasticList {
    */
   public destroy() {
     super.destroy();
-    // Remove event listeners
-    window.removeEventListener("load", this.boundUpdate);
   }
 
   /**
@@ -34,27 +24,46 @@ export default class WraptasticListVer extends WraptasticList {
     const items: NodeListOf<HTMLElement> = this.getListItems();
     // Save the numer of overflowing items
     let overflowCount = 0;
-    // Loop through the items
-    Array.prototype.forEach.call(items, (item, index) => {
-      if (index < this.config.lines) {
-        // Visible line, show the item
-        this.showItem(item);
-      } else {
-        // Hidden line, hide the item
-        this.hideItem(item);
-        // Add it to the number of overflowing items
-        overflowCount += 1;
-      }
+    // First we hide all items
+    Array.prototype.forEach.call(items, (item) => {
+      this.hideItem(item);
     });
+    // Show the counter
+    this.showCounter();
+    // Loop through the items one by one
+    for (let index = 0; index < items.length; index++) {
+      const item = items[index];
+      // Check if this is the last item
+      if (index === items.length - 1) {
+        // Update overflow count
+        overflowCount = 0;
+        // Yes, hide the counter
+        this.hideCounter();
+      }
+      // Show the item
+      this.showItem(item);
+      // Check if the item should be hidden
+      if (this.isOverflowing() || index >= this.config.lines) {
+        // Yes, hide item again
+        this.hideItem(item);
+        // Update the number of overflowing items
+        overflowCount = items.length - index;
+        // Break out of the loop
+        break;
+      }
+    }
     // Update the counter label to reflect the current overflowing count
     this.updateCounterLabel(overflowCount);
-    // Show the counter if there are overflowing items
-    if (overflowCount > 0) {
-      this.showCounter();
-    } else {
-      this.hideCounter();
-    }
     // Wrap up update cycle
     this.afterUpdate(overflowCount);
+  }
+
+  /**
+   * Checks if the container is overflowing.
+   */
+  protected isOverflowing(): boolean {
+    const clientHeight = this.listElem.clientHeight;
+    const scrollHeight = this.listElem.scrollHeight;
+    return scrollHeight > clientHeight;
   }
 }

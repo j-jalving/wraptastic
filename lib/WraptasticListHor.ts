@@ -3,14 +3,9 @@ import WraptasticList from "./WraptasticList";
 
 export default class WraptasticListHor extends WraptasticList {
   protected currentLine = 1;
-  protected resizeObserver: ResizeObserver = new ResizeObserver(
-    this.boundUpdate
-  );
 
   constructor(listElem: HTMLElement, config: Config) {
     super(listElem, config);
-    // React to size changes of the list element
-    this.resizeObserver.observe(this.listElem);
   }
 
   /**
@@ -89,9 +84,6 @@ export default class WraptasticListHor extends WraptasticList {
    */
   public destroy() {
     super.destroy();
-    // Remove event listeners
-    window.removeEventListener("load", this.boundUpdate);
-    this.resizeObserver.unobserve(this.listElem);
   }
 
   /**

@@ -6,7 +6,9 @@ export default class WraptasticList extends EventTarget {
   protected counterElem: HTMLElement | null;
   protected createdElems: HTMLElement[] = [];
   protected overflowCount: number | undefined;
-  protected boundUpdate;
+  protected resizeObserver: ResizeObserver = new ResizeObserver(
+    this.update.bind(this)
+  );
 
   constructor(listElem: HTMLElement, config: Config) {
     super();
@@ -26,11 +28,10 @@ export default class WraptasticList extends EventTarget {
     }
     // Add data-wraptastic-init attribute so we know it has been initialized
     this.listElem.setAttribute("data-wraptastic-init", "");
+    // React to size changes of the list element
+    this.resizeObserver.observe(this.listElem);
     // Emit create event, wait a tick to be sure event listeners are registered
     window.setTimeout(this.triggerCreateEvent.bind(this));
-    // Create a bound version of the update method to easily add and remove
-    // listeners with
-    this.boundUpdate = this.update.bind(this);
   }
 
   /**
@@ -46,6 +47,8 @@ export default class WraptasticList extends EventTarget {
     Array.prototype.forEach.call(this.createdElems, (element) => {
       element.remove();
     });
+    // Unobserve resize observer
+    this.resizeObserver.unobserve(this.listElem);
     // Remove data-wraptastic-init attribute so we know it has not been
     // initialized
     this.listElem.removeAttribute("data-wraptastic-init");

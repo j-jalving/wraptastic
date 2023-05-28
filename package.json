@@ -1,7 +1,7 @@
 {
   "name": "wraptastic",
   "version": "1.0.0",
-  "description": "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage inline list wrapping and overflows",
+  "description": "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage list wrapping and overflows",
   "type": "module",
   "files": [
     "dist"
