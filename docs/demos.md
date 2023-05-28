@@ -7,11 +7,16 @@
     });
   })
 </script>
-# Examples
+
+# Demos
 
 This page gives a preview of some ways you can use Wraptastic.js.
 
 ## Default setup
+
+<wraptastic-container>
+  <ul class="wraptastic"></ul>
+</wraptastic-container>
 
 ### Code
 
@@ -36,13 +41,14 @@ This page gives a preview of some ways you can use Wraptastic.js.
 </script>
 ```
 
-### Result
+## Two lines
 
 <wraptastic-container>
-  <ul class="wraptastic"></ul>
+  <ul 
+    class="wraptastic"
+    data-wraptastic-lines="2"
+  ></ul>
 </wraptastic-container>
-
-## Two lines
 
 ### Code
 
@@ -57,16 +63,14 @@ This page gives a preview of some ways you can use Wraptastic.js.
 </script>
 ```
 
-### Result
+## Three lines
 
 <wraptastic-container>
   <ul 
     class="wraptastic"
-    data-wraptastic-lines="2"
+    data-wraptastic-lines="3"
   ></ul>
 </wraptastic-container>
-
-## Three lines
 
 ### Code
 
@@ -81,16 +85,14 @@ This page gives a preview of some ways you can use Wraptastic.js.
 </script>
 ```
 
-### Result
+## Counter template
 
 <wraptastic-container>
   <ul 
     class="wraptastic"
-    data-wraptastic-lines="3"
+    data-wraptastic-counter-template="{count} more items"
   ></ul>
 </wraptastic-container>
-
-## Counter template
 
 ### Code
 
@@ -105,16 +107,14 @@ This page gives a preview of some ways you can use Wraptastic.js.
 </script>
 ```
 
-### Result
+## No counter
 
 <wraptastic-container>
   <ul 
     class="wraptastic"
-    data-wraptastic-counter-template="{count} more items"
+    data-wraptastic-counter-enabled="false"
   ></ul>
 </wraptastic-container>
-
-## No counter
 
 ### Code
 
@@ -129,16 +129,16 @@ This page gives a preview of some ways you can use Wraptastic.js.
 </script>
 ```
 
-### Result
+## Vertical list
 
-<wraptastic-container>
+<wraptastic-container :inline="false" :animate="false">
   <ul 
     class="wraptastic"
-    data-wraptastic-counter-enabled="false"
+    data-wraptastic-lines="6"
+    data-wraptastic-inline="false"
+    style="display: flex; flex-direction: column; flex-wrap: nowrap; flex-grow: 1;"
   ></ul>
 </wraptastic-container>
-
-## Vertical list
 
 ### Code
 
@@ -159,19 +159,8 @@ This page gives a preview of some ways you can use Wraptastic.js.
       "Grapefruit",
       "Blueberry",
     ],
-    lines: 3,
+    lines: 6,
     inline: false,
   });
 </script>
 ```
-
-### Result
-
-<wraptastic-container :animate="false" :animate-button="false">
-  <ul 
-    class="wraptastic"
-    data-wraptastic-lines="3"
-    data-wraptastic-inline="false"
-    style="display: flex; flex-direction: column;"
-  ></ul>
-</wraptastic-container>

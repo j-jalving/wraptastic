@@ -20,8 +20,7 @@ export default defineConfig({
           { text: " Options", link: "/options" },
           { text: " Events", link: "/events" },
           { text: " Methods", link: "/methods" },
-
-          { text: " Examples", link: "/examples" },
+          { text: " Demos", link: "/demos" },
         ],
       },
     ],

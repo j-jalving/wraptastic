@@ -4,12 +4,15 @@ layout: home
 
 hero:
   name: "Wraptastic.js"
-  text: "Effortlessly manage inline list wrapping and overflow"
+  text: "Effortlessly manage list wrapping and overflow"
   tagline: Don't let long lists mess with your layout
   actions:
-    - text: Get started
+    - theme: brand
+      text: Get started
       link: /setup
-
+    - theme: alt
+      text: Demos
+      link: /demos
 features:
   - title: Flexible Wrapping
     details: Are you tired of struggling with long lists that break the layout of your website? Look no further! Wraptastic.js is here to solve your problem. With Wraptastic.js you decide when your list should wrap, whether it's after 2, 3, or any other amount of lines.

@@ -1,6 +1,6 @@
 # Wraptastic.js
 
-Wraptastic.js is a simple JavaScript package that effortlessly helps you manage inline list wrapping and overflows
+Wraptastic.js is a simple JavaScript package that effortlessly helps you manage list wrapping and overflows.
 
 ![demo](https://github.com/j-jalving/wraptastic/assets/60800079/f21261c8-a658-4489-b4c1-e900550f3aee)
 

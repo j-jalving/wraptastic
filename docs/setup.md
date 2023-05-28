@@ -1,6 +1,6 @@
 # Setup
 
-This page demonstrates some of ways to install Wraptastic.js
+This page demonstrates some of ways to install Wraptastic.js. Want to see Wraptastic.js in action? Check out the [demos page](/demos).
 
 ## Installation
 
@@ -226,4 +226,4 @@ Read more about available methods on the [methods](/methods) page.
 
 ## More
 
-Read al about the customization options available to you on the [options](/options), [events](/events) and [methods](/methods) pages, or view real-life examples on the [examples page](/examples)!
+Read al about the customization options available to you on the [options](/options), [events](/events) and [methods](/methods) pages, or view real-life demos on the [demos page](/demos)!
