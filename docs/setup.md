@@ -4,16 +4,6 @@ This page demonstrates some of ways to install Wraptastic.js. Want to see Wrapta
 
 ## Installation
 
-### Import from CDN
-
-The easiest option is by loading the script directly from a CDN.
-The recommended practice is to import the script just before the closing
-`</body>` tag or between the `<head>` tags in your HTML document:
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/@j-jalving/wraptastic"></script>
-```
-
 ### Install as Node Module
 
 You can also install Wraptastic.js by running on of the following command
@@ -40,24 +30,39 @@ And then import the package in your script:
 import Wraptastic from "wraptastic";
 ```
 
+### Import from CDN
+
+It's also possible to import the script directly from a CDN:
+
+```js
+import Wraptastic from "https://cdn.jsdelivr.net/npm/wraptastic/dist/wraptastic.js";
+```
+
 ## Styles (optional)
 
 This package does not need any styling for it to work. But a basic theme
 can be imported to save you some work. Feel free to use it in your project:
 
+::: code-group
+
+```css [css]
+@import "wraptastic/style.css";
+```
+
+```js [js]
+import "wraptastic/style.css";
+```
+
+::: 
+
+Or load it directly from the CDN:
+
 ```html
 <link
   rel="stylesheet"
   type="text/css"
-  href="https://cdn.jsdelivr.net/npm/@j-jalving/wraptastic/dist/style.css"
+  href="https://cdn.jsdelivr.net/npm/wraptastic/dist/style.css"
 />
-```
-
-Or import it in your script when you've installed the package through `npm` or
-`yarn`:
-
-```js
-import "wraptastic/style.css";
 ```
 
 ### Colors
