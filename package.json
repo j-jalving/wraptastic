@@ -21,8 +21,14 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/wraptastic.umd.js",
+  "main": "./dist/wraptastic.umd.cjs",
   "module": "./dist/wraptastic.js",
+  "exports": {
+    ".": {
+      "import": "./dist/wraptastic.js",
+      "require": "./dist/wraptastic.umd.cjs"
+    }
+  },
   "scripts": {
     "build": "tsc && vite build",
     "docs:dev": "vitepress dev docs",
