@@ -22,7 +22,8 @@ $ pnpm add wraptastic
 ```sh [yarn]
 $ yarn add wraptastic
 ```
-::: 
+
+:::
 
 And then import the package in your script:
 
@@ -53,7 +54,7 @@ can be imported to save you some work. Feel free to use it in your project:
 import "wraptastic/style.css";
 ```
 
-::: 
+:::
 
 Or load it directly from the CDN:
 
@@ -117,14 +118,14 @@ const wraptastic = new Wraptastic();
 ### Option 3
 
 Finally you can choose to build the list items (and optionally the counter)
-yourself in the HTML to have more control over the output. Make sure to give
-each element a `wrapptastic-item` class name:
+yourself in the HTML to have more control over contents of the list items. Make
+sure to give each element a `wraptastic-item` class name:
 
 ```html
 <ul class="wraptastic">
-  <li class="wrapptastic-item">Item 1</li>
-  <li class="wrapptastic-item">Item 2</li>
-  <li class="wrapptastic-item">Item 3</li>
+  <li class="wraptastic-item">Item 1</li>
+  <li class="wraptastic-item">Item 2</li>
+  <li class="wraptastic-item">Item 3</li>
   <!-- More items... -->
   <li class="wraptastic-counter"></li>
 </ul>

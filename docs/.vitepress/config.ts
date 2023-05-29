@@ -5,7 +5,7 @@ export default defineConfig({
   base: "/wraptastic/",
   title: "Wraptastic.js",
   description:
-    "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage inline list wrapping and overflows",
+    "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage list wrapping and overflows",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
