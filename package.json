@@ -2,6 +2,20 @@
   "name": "wraptastic",
   "version": "1.1.0",
   "description": "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage list wrapping and overflows",
+  "license": "MIT",
+  "keywords": [
+    "front-end",
+    "web",
+    "javascript",
+    "list",
+    "lists",
+    "tags",
+    "wrap",
+    "wrapping",
+    "overflow",
+    "counter"
+  ],
+  "homepage": "https://j-jalving.github.io/wraptastic/",
   "type": "module",
   "files": [
     "dist"
