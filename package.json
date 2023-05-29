@@ -1,6 +1,6 @@
 {
   "name": "wraptastic",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage list wrapping and overflows",
   "license": "MIT",
   "keywords": [
