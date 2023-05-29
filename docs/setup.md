@@ -16,18 +16,23 @@ The recommended practice is to import the script just before the closing
 
 ### Install as Node Module
 
-You can also install Wraptastic.js via `npm` by running the following command
-inside your project:
+You can also install Wraptastic.js by running on of the following command
+inside your project (depending on your prefered package manager):
 
-```bash
-npm install wraptastic
+::: code-group
+
+```sh [npm]
+$ npm install wraptastic
 ```
 
-Or if you are using `yarn` :
-
-```bash
-yarn add wraptastic
+```sh [pnpm]
+$ pnpm add wraptastic
 ```
+
+```sh [yarn]
+$ yarn add wraptastic
+```
+::: 
 
 And then import the package in your script:
 
