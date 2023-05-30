@@ -3,7 +3,7 @@
   import { onMounted } from 'vue';
   onMounted(() => {
     new Wraptastic({
-      data: ["Apple", "Banana", "Orange", "Mango", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]
+      data: ["Apple", "Banana", "Orange", "Mango", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"],
     });
   })
 </script>
@@ -80,7 +80,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 <wraptastic-container>
   <ul 
     class="wraptastic"
-    data-wraptastic-lines="2"
+    data-wraptastic-max-lines="2"
   ></ul>
 </wraptastic-container>
 
@@ -105,7 +105,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
       "Grapefruit",
       "Blueberry",
     ],
-    lines: 2,
+    maxLines: 2,
   });
 </script>
 ```
@@ -114,7 +114,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 <ul
   class="wraptastic"
   data-wraptastic-data='["Apple", "Banana", "Orange", "Mango", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
-  data-wraptastic-lines="2"
+  data-wraptastic-max-lines="2"
 ></ul>
 
 <script>
@@ -138,7 +138,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 <script>
   const wraptastic = new Wraptastic({
-    lines: 2,
+    maxLines: 2,
   });
 </script>
 ```
@@ -150,7 +150,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 <wraptastic-container>
   <ul 
     class="wraptastic"
-    data-wraptastic-lines="3"
+    data-wraptastic-max-lines="3"
   ></ul>
 </wraptastic-container>
 
@@ -175,7 +175,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
       "Grapefruit",
       "Blueberry",
     ],
-    lines: 3,
+    maxLines: 3,
   });
 </script>
 ```
@@ -184,7 +184,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 <ul
   class="wraptastic"
   data-wraptastic-data='["Apple", "Banana", "Orange", "Mango", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
-  data-wraptastic-lines="3"
+  data-wraptastic-max-lines="3"
 ></ul>
 
 <script>
@@ -208,7 +208,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 <script>
   const wraptastic = new Wraptastic({
-    lines: 3,
+    maxLines: 3,
   });
 </script>
 ```
@@ -364,8 +364,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 <wraptastic-container :inline="false" :animate="false">
   <ul 
     class="wraptastic"
-    data-wraptastic-lines="6"
-    data-wraptastic-inline="false"
+    data-wraptastic-max-lines="6"
     style="display: flex; flex-direction: column; flex-wrap: nowrap; flex-grow: 1;"
   ></ul>
 </wraptastic-container>
@@ -391,8 +390,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
       "Grapefruit",
       "Blueberry",
     ],
-    lines: 6,
-    inline: false,
+    maxLines: 6,
   });
 </script>
 ```
@@ -402,8 +400,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
   class="wraptastic"
   style="display: flex; flex-direction: column;"
   data-wraptastic-data='["Apple", "Banana", "Orange", "Mango", "Pineapple", "Watermelon", "Strawberry", "Kiwi", "Grapefruit", "Blueberry"]'
-  data-wraptastic-lines="6"
-  data-wraptastic-inline="false"
+  data-wraptastic-max-lines="6"
 ></ul>
 
 <script>
@@ -427,8 +424,7 @@ This page gives a preview of some ways you can use Wraptastic.js.
 
 <script>
   const wraptastic = new Wraptastic({
-    lines: 6,
-    inline: false,
+    maxLines: 6,
   });
 </script>
 ```

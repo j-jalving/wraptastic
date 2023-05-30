@@ -43,12 +43,10 @@ export default {
   background-color: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
+  resize: both;
 }
 
 .horizontal {
-  min-height: 152px;
-  resize: horizontal;
-
   &.animate {
     animation: stretch-width 6s alternate infinite 1s ease-in-out;
   }
@@ -57,7 +55,6 @@ export default {
 .vertical {
   display: flex;
   height: 382px;
-  resize: vertical;
 
   &.animate {
     animation: stretch-height 6s alternate infinite 1s ease-in-out;

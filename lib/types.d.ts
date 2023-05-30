@@ -1,8 +1,8 @@
 export type Config = {
   container: string;
   data: string[] | null;
-  lines: number;
-  inline: boolean;
+  minLines: number;
+  maxLines: number;
   item: string;
   itemClass: string;
   counter: string;

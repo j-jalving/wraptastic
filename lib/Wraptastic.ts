@@ -1,6 +1,4 @@
 import WraptasticList from "./WraptasticList";
-import WraptasticListHor from "./WraptasticListHor";
-import WraptasticListVer from "./WraptasticListVer";
 import type { Config } from "./types";
 
 export default class Wraptastic extends EventTarget {
@@ -14,8 +12,8 @@ export default class Wraptastic extends EventTarget {
     this.config = {
       container: ".wraptastic",
       data: null,
-      lines: 1,
-      inline: true,
+      minLines: 1,
+      maxLines: 1,
       item: ".wraptastic-item",
       itemClass: "wraptastic-item",
       counter: ".wraptastic-counter",
@@ -47,14 +45,8 @@ export default class Wraptastic extends EventTarget {
         ...this.config,
         ...this.getDataConfig(listElem),
       };
-      // Determine the list type based on the inline config option
-      if (config.inline) {
-        // inline is true, create horizontal list
-        this.instances.push(new WraptasticListHor(listElem, config));
-      } else {
-        // inline is false, create vertical list
-        this.instances.push(new WraptasticListVer(listElem, config));
-      }
+      // Create WraptasticList instance
+      this.instances.push(new WraptasticList(listElem, config));
     });
   }
 
@@ -113,11 +105,11 @@ export default class Wraptastic extends EventTarget {
     if (element.dataset.wraptasticData) {
       config.data = JSON.parse(element.dataset.wraptasticData);
     }
-    if (element.dataset.wraptasticLines) {
-      config.lines = JSON.parse(element.dataset.wraptasticLines);
+    if (element.dataset.wraptasticMinLines) {
+      config.minLines = JSON.parse(element.dataset.wraptasticMinLines);
     }
-    if (element.dataset.wraptasticInline) {
-      config.inline = JSON.parse(element.dataset.wraptasticInline);
+    if (element.dataset.wraptasticMaxLines) {
+      config.maxLines = JSON.parse(element.dataset.wraptasticMaxLines);
     }
     if (element.dataset.wraptasticItem) {
       config.item = element.dataset.wraptasticItem;
