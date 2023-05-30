@@ -169,6 +169,7 @@ const wraptastic = new Wraptastic({
     return `${count} items`;
   },
   counterEnabled: false,
+  updateEvery: 200
 });
 ```
 
