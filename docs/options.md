@@ -8,7 +8,7 @@ Wraptastic.js:
 const wraptastic = new Wraptastic() {
   container: ".list",
   data: ["Apple", "Banana", "Orange", "Pear", "Mango"],
-  lines: 2,
+  maxLines: 2,
   // etc...
 }
 ```
@@ -29,21 +29,19 @@ list.
 You may pass an array of strings here to let Wraptastic.js create the list items
 for you.
 
-## lines
+## minLines
 
 - **Type:** `number`
 - **Default:** `1`
 
-The maximum number of lines that list items may wrap before they start overflowing.
+The minimum number of lines to display when the container height becomes insufficient to accommodate all the items.
 
-## inline
+## maxLines
 
-- **Type:** `boolean`
-- **Default:** `true`
+- **Type:** `number`
+- **Default:** `1`
 
-Wraptastic.js was primarily created to handle lists with inline items. But you
-can set this option to `false` if each list item in your list is on a seperate
-line.
+The maximum amount of lines that list items may wrap before they start overflowing.
 
 ## item
 

@@ -39,10 +39,9 @@ It's also possible to import the script directly from a CDN:
 import Wraptastic from "https://cdn.jsdelivr.net/npm/wraptastic/dist/wraptastic.js";
 ```
 
-## Styles (optional)
+## Styles
 
-This package does not need any styling for it to work. But a basic theme
-can be imported to save you some work. Feel free to use it in your project:
+This package does not need any styling to work, but a basic theme can be imported to save you some work. Feel free to use it in your project:
 
 ::: code-group
 
@@ -78,6 +77,10 @@ You also have the option to customize the colors using CSS variables:
 ```
 
 ## Usage
+
+::: warning
+Even though this package does not need any styling, it's very important to **remove all _top margins_ from the list items (`.wraptastic-item`)**. This is due to the way Wraptastic.js detects overflows and wrapping. You can put top margins on the container and all elements within your list items.
+:::
 
 Setup is very easy, and cane be done in one of several ways:
 
@@ -156,8 +159,8 @@ optional.**
 const wraptastic = new Wraptastic({
   container: ".list",
   data: ["Apple", "Banana", "Orange", "Pear", "Mango"],
-  lines: 2,
-  inline: false,
+  minLines: 1,
+  maxLines: 3,
   item: ".item",
   itemClass: "item",
   counter: ".counter",
@@ -176,8 +179,8 @@ the shared options. **All data attribute options are optional.**
 <div
   data-wraptastic
   data-wraptastic-data='["Apple", "Banana", "Orange", "Pear", "Mango"]'
-  data-wraptastic-lines="2"
-  data-wraptastic-inline="false"
+  data-wraptastic-min-lines="1"
+  data-wraptastic-max-lines="2"
   data-wraptastic-item=".item"
   data-wraptastic-item-class="item"
   data-wraptastic-counter=".counter"

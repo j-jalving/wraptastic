@@ -5,11 +5,12 @@
 
 .wraptastic {
   $block: &;
-
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-
+  min-width: 0;
+  max-height: 100%;
   margin: 0;
   padding: 0;
 
@@ -21,14 +22,13 @@
     justify-content: center;
     box-sizing: border-box;
     height: 30px;
+    margin-top: 0 !important;
     padding: 0 10px;
-    overflow: hidden;
     color: var(--wraptastic-text-color);
     font-weight: bold;
     font-size: 0.8rem;
     white-space: nowrap;
     text-decoration: none;
-    text-overflow: ellipsis;
     list-style-type: none;
     background: var(--wraptastic-background-color);
     border: solid 2px var(--wraptastic-background-color);
