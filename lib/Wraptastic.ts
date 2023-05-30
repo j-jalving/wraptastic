@@ -22,6 +22,7 @@ export default class Wraptastic extends EventTarget {
         return `+${count}`;
       },
       counterEnabled: true,
+      updateEvery: 0,
     };
     // Merge default config with config, if provided
     this.config = { ...this.config, ...config };
@@ -130,6 +131,9 @@ export default class Wraptastic extends EventTarget {
       config.counterEnabled = JSON.parse(
         element.dataset.wraptasticCounterEnabled
       );
+    }
+    if (element.dataset.wraptasticUpdateEvery) {
+      config.updateEvery = JSON.parse(element.dataset.wraptasticUpdateEvery);
     }
     return config;
   }

@@ -9,4 +9,5 @@ export type Config = {
   counterClass: string;
   counterTemplate: string | ((count: number) => string);
   counterEnabled: boolean;
+  updateEvery: number;
 };

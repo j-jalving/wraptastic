@@ -1,4 +1,5 @@
 import type { Config } from "./types";
+import { throttle } from "lodash";
 
 export default class WraptasticList extends EventTarget {
   protected config: Config;
@@ -7,9 +8,7 @@ export default class WraptasticList extends EventTarget {
   protected createdElems: HTMLElement[] = [];
   protected visibleOffsets: number[] = [];
   protected overflowCount: number | undefined;
-  protected resizeObserver: ResizeObserver = new ResizeObserver(
-    this.update.bind(this)
-  );
+  protected resizeObserver: ResizeObserver;
 
   constructor(listElem: HTMLElement, config: Config) {
     super();
@@ -31,6 +30,9 @@ export default class WraptasticList extends EventTarget {
     // Add data-wraptastic-init attribute so we know it has been initialized
     this.listElem.setAttribute("data-wraptastic-init", "");
     // React to size changes of the list element
+    this.resizeObserver = new ResizeObserver(
+      throttle(this.update.bind(this), this.config.updateEvery)
+    );
     this.resizeObserver.observe(this.listElem);
     // Emit create event, wait a tick to be sure event listeners are registered
     window.setTimeout(this.triggerCreateEvent.bind(this));
@@ -49,8 +51,10 @@ export default class WraptasticList extends EventTarget {
     let overflowCount = 0;
     // Are there enough items to fill the available lines?
     if (items.length + 1 > this.config.maxLines) {
-      // Yes, first hide all items
-      Array.prototype.forEach.call(items, (item) => this.hideItem(item));
+      // Yes, get all visible list items
+      const visibleItems: NodeListOf<HTMLElement> = this.getVisibleListItems();
+      // Then hide all visible items
+      Array.prototype.forEach.call(visibleItems, (item) => this.hideItem(item));
       // Show the counter
       this.showCounter();
       // Set index
@@ -117,8 +121,10 @@ export default class WraptasticList extends EventTarget {
       // Update the overflow count
       overflowCount = items.length - index;
     } else {
+      // Get all hidden list items
+      const hiddenItems: NodeListOf<HTMLElement> = this.getHiddenListItems();
       // Overflow is impossible so we can simply show everything
-      Array.prototype.forEach.call(items, (item) => this.showItem(item));
+      Array.prototype.forEach.call(hiddenItems, (item) => this.showItem(item));
     }
     // Update the counter label
     this.updateCounterLabel(overflowCount);
@@ -208,9 +214,35 @@ export default class WraptasticList extends EventTarget {
     }
   }
 
+  /**
+   *
+   * @returns Returns all list items inside this container
+   */
   protected getListItems(): NodeListOf<HTMLElement> {
     return this.listElem.querySelectorAll(
       `${this.config.item}:not(${this.config.counter})`
+    );
+  }
+
+  /**
+   *
+   * @returns Returns all visible list items inside this container
+   */
+  protected getVisibleListItems(): NodeListOf<HTMLElement> {
+    return this.listElem.querySelectorAll(
+      `${this.config.item}:not(${this.config.counter})` +
+        `:not([data-wraptastic-hidden])`
+    );
+  }
+
+  /**
+   *
+   * @returns Returns all hidden list items inside this container
+   */
+  protected getHiddenListItems(): NodeListOf<HTMLElement> {
+    return this.listElem.querySelectorAll(
+      `${this.config.item}:not(${this.config.counter})` +
+        `[data-wraptastic-hidden]`
     );
   }
 
@@ -252,6 +284,7 @@ export default class WraptasticList extends EventTarget {
   protected hideItem(item?: HTMLElement) {
     if (item) {
       item.style.display = "none";
+      item.setAttribute("wraptastic-hidden", "");
     }
   }
 
@@ -261,6 +294,7 @@ export default class WraptasticList extends EventTarget {
   protected showItem(item?: HTMLElement) {
     if (item) {
       item.style.display = "";
+      item.removeAttribute("wraptastic-hidden");
     }
   }
 

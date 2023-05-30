@@ -102,3 +102,10 @@ accepted.
 
 A counter element is created for you by default, this option allows you to
 disable the counter entirely.
+
+## updateEvery
+
+- **Type:** `number`
+- **Default:** `0`
+
+The time interval, in milliseconds, that determines the frequency at which Wraptastic.js updates your lists when they change size.
