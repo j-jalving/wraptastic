@@ -1,5 +1,5 @@
 import type { Config } from "./types";
-import { throttle } from "lodash";
+import throttle from "lodash/throttle";
 
 export default class WraptasticList extends EventTarget {
   protected config: Config;
