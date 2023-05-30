@@ -49,6 +49,8 @@ export default class Wraptastic extends EventTarget {
       // Create WraptasticList instance
       this.instances.push(new WraptasticList(listElem, config));
     });
+    // Return this to enable method chaining
+    return this;
   }
 
   /**
@@ -58,6 +60,8 @@ export default class Wraptastic extends EventTarget {
     Array.prototype.forEach.call(this.instances, (instance: WraptasticList) => {
       instance.update();
     });
+    // Return this to enable method chaining
+    return this;
   }
 
   /**
@@ -68,6 +72,8 @@ export default class Wraptastic extends EventTarget {
       instance.destroy();
     });
     this.instances.length = 0;
+    // Return this to enable method chaining
+    return this;
   }
 
   /**
