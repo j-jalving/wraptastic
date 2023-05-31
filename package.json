@@ -1,6 +1,17 @@
 {
   "name": "wraptastic",
   "version": "1.3.0",
+  "scripts": {
+    "build": "tsc && vite build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "build:all": "npm run build && npm run docs:build",
+    "lint": "npm run lint:js && npm run lint:css && npm run prettier",
+    "lint:js": "eslint '**/*.{js,ts,vue}' --fix",
+    "lint:css": "stylelint '**/*.{css,scss}' --fix",
+    "prettier": "prettier --write ."
+  },
   "description": "Wraptastic.js is a simple JavaScript package that effortlessly helps you manage list wrapping and overflows",
   "keywords": [
     "front-end",
@@ -28,17 +39,6 @@
       "import": "./dist/wraptastic.js",
       "require": "./dist/wraptastic.umd.cjs"
     }
-  },
-  "scripts": {
-    "build": "tsc && vite build",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "build:all": "npm run build && npm run docs:build",
-    "lint": "npm run lint:js && npm run lint:css && npm run prettier",
-    "lint:js": "eslint '**/*.{js,ts,vue}' --fix",
-    "lint:css": "stylelint '**/*.{css,scss}' --fix",
-    "prettier": "prettier --write ."
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
