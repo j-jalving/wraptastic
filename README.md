@@ -25,7 +25,7 @@ pnpm add wraptastic
 yarn add wraptastic
 ```
 
-[All installation options](https://j-jalving.github.io/wraptastic/options.html)
+[All installation options](https://j-jalving.github.io/wraptastic/setup.html)
 
 ### Usage
 
