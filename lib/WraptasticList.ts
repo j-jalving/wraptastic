@@ -1,3 +1,4 @@
+import EventTarget from "@ungap/event-target";
 import type { Config } from "./types";
 import throttle from "lodash/throttle";
 
