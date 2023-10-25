@@ -1,3 +1,4 @@
+import EventTarget from "@ungap/event-target";
 import WraptasticList from "./WraptasticList";
 import type { Config } from "./types";
 
